@@ -1,4 +1,6 @@
 #include "mainwindow.hpp"
+#include "image_pair_open_widget/image_pair_open_widget.hpp"
+#include "image_viewer/image_viewer.hpp"
 #include <QDockWidget>
 
 MainWindow::MainWindow(QWidget *t_parent) :
@@ -21,5 +23,5 @@ void MainWindow::setupUi()
     image_pair_open_dock_widget->setFeatures(QDockWidget::DockWidgetMovable);
     image_pair_open_dock_widget->setWidget(m_image_pair_open_widget);
     image_pair_open_dock_widget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    addDockWidget(Qt::RightDockWidgetArea, image_pair_open_dock_widget);
+    addDockWidget(Qt::LeftDockWidgetArea, image_pair_open_dock_widget);
 }

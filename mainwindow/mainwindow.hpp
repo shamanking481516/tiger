@@ -2,8 +2,9 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include "image_pair_open_widget/image_pair_open_widget.hpp"
-#include "image_viewer/image_viewer.hpp"
+
+class ImagePairOpenWidget;
+class ImageViewer;
 
 class MainWindow : public QMainWindow
 {
