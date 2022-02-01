@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include <opencv2/core.hpp>
-#include "image_open_widget/image_open_widget.hpp"
+
+class ImageOpenWidget;
 
 class ImagePairOpenWidget : public QWidget
 {

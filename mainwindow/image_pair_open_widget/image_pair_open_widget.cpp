@@ -1,4 +1,5 @@
 #include "image_pair_open_widget.hpp"
+#include "image_open_widget/image_open_widget.hpp"
 #include <QVBoxLayout>
 #include <QLabel>
 
@@ -31,6 +32,7 @@ void ImagePairOpenWidget::setupUi()
     auto *layout{new QVBoxLayout};
     layout->addWidget(m_first_open_widget);
     layout->addWidget(m_second_open_widget);
+    layout->addStretch();
     setLayout(layout);
 }
 
