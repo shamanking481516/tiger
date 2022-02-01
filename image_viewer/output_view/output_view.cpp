@@ -3,9 +3,14 @@
 #include <QWheelEvent>
 #include <QtMath>
 #include <QResizeEvent>
+#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
+#include <QRubberBand>
+#include <QDebug>
 
 OutputView::OutputView(QWidget *t_parent) :
-    QGraphicsView{t_parent}
+    QGraphicsView{t_parent},
+    m_rubber_band{new QRubberBand(QRubberBand::Rectangle, this)}
 {
 //    setDragMode(QGraphicsView::ScrollHandDrag);
     setupUi();
@@ -50,7 +55,25 @@ void OutputView::mouseDoubleClickEvent(QMouseEvent *t_event)
 
 void OutputView::mousePressEvent(QMouseEvent *t_event)
 {
+    m_origin = t_event->pos();
+    m_rubber_band->setGeometry(QRect(m_origin, QSize()));
+    m_rubber_band->show();
+}
 
+void OutputView::mouseMoveEvent(QMouseEvent *t_event)
+{
+    m_rubber_band->setGeometry(QRect(m_origin, t_event->pos()).normalized());
+}
+
+void OutputView::mouseReleaseEvent(QMouseEvent *t_event)
+{
+    if (!items().empty())
+    {
+        QGraphicsPixmapItem *pixmap_item = qgraphicsitem_cast<QGraphicsPixmapItem*>(items().at(0));
+        QPixmap pixmap = pixmap_item->pixmap().copy(m_rubber_band->geometry());
+        pixmap.save("crop.jpeg");
+    }
+    m_rubber_band->hide();
 }
 
 void OutputView::setupUi()

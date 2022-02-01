@@ -1,4 +1,6 @@
 #include "image_viewer.hpp"
+#include "output_scene/output_scene.hpp"
+#include "output_view/output_view.hpp"
 #include <QVBoxLayout>
 
 ImageViewer::ImageViewer(QWidget *t_parent) :

@@ -2,9 +2,10 @@
 #define IMAGE_VIEWER_HPP
 
 #include <QWidget>
-#include "output_scene/output_scene.hpp"
-#include "output_view/output_view.hpp"
 #include <opencv2/opencv.hpp>
+
+class OutputScene;
+class OutputView;
 
 class ImageViewer : public QWidget
 {
@@ -12,6 +13,7 @@ class ImageViewer : public QWidget
 public:
     explicit ImageViewer(QWidget *t_parent = nullptr);
     virtual ~ImageViewer();
+
     void setMat(const cv::Mat &t_mat);
 
 private:
