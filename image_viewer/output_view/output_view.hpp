@@ -28,6 +28,10 @@ private:
     QRubberBand *m_rubber_band;
 
     void setupUi();
+    const QRect getRectForScene(const QRect &t_rect);
+
+signals:
+    void sendSelectedArea(QPixmap t_selected_area);
 };
 
 #endif // OUTPUT_VIEW_HPP

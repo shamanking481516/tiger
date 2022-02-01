@@ -12,7 +12,6 @@ OutputView::OutputView(QWidget *t_parent) :
     QGraphicsView{t_parent},
     m_rubber_band{new QRubberBand(QRubberBand::Rectangle, this)}
 {
-//    setDragMode(QGraphicsView::ScrollHandDrag);
     setupUi();
 }
 
@@ -70,8 +69,8 @@ void OutputView::mouseReleaseEvent(QMouseEvent *t_event)
     if (!items().empty())
     {
         QGraphicsPixmapItem *pixmap_item = qgraphicsitem_cast<QGraphicsPixmapItem*>(items().at(0));
-        QPixmap pixmap = pixmap_item->pixmap().copy(m_rubber_band->geometry());
-        pixmap.save("crop.jpeg");
+        QPixmap selected_area = pixmap_item->pixmap().copy(getRectForScene(m_rubber_band->geometry()));
+        emit sendSelectedArea(selected_area);
     }
     m_rubber_band->hide();
 }
@@ -80,4 +79,11 @@ void OutputView::setupUi()
 {
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+}
+
+const QRect OutputView::getRectForScene(const QRect &t_rect)
+{
+    QPointF top_left = mapToScene(t_rect.x(), t_rect.y());
+    QPointF bottom_right = mapToScene(t_rect.x() + t_rect.width(), t_rect.y() + t_rect.height());
+    return QRect(top_left.toPoint(), bottom_right.toPoint());
 }
