@@ -15,6 +15,9 @@ public:
 
     const cv::Mat &getFirstMat();
     const cv::Mat &getSecondMat();
+    const bool getFirstStatus();
+    const bool getSecondStatus();
+    const bool getStatus();
 
 private:
     ImageOpenWidget *m_first_open_widget;
@@ -23,6 +26,9 @@ private:
 
     void setupUi();
     void initializationOfConnection();
+
+private slots:
+    void updateStatus();
 
 signals:
     void prepared();

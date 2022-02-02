@@ -18,6 +18,7 @@ private:
     ImageViewer *m_image_viewer;
 
     void setupUi();
+    void initializationOfConnection();
 };
 
 #endif // MAINWINDOW_HPP

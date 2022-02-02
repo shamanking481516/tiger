@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *t_parent) :
     m_image_viewer{new ImageViewer}
 {
     setupUi();
+    initializationOfConnection();
 }
 
 MainWindow::~MainWindow()
@@ -24,4 +25,14 @@ void MainWindow::setupUi()
     image_pair_open_dock_widget->setWidget(m_image_pair_open_widget);
     image_pair_open_dock_widget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     addDockWidget(Qt::LeftDockWidgetArea, image_pair_open_dock_widget);
+}
+
+void MainWindow::initializationOfConnection()
+{
+    connect(m_image_pair_open_widget, &ImagePairOpenWidget::firstOpened, this, [&](){
+        m_image_viewer->setMat(m_image_pair_open_widget->getFirstMat());
+    });
+    connect(m_image_pair_open_widget, &ImagePairOpenWidget::secondOpened, this, [&](){
+            m_image_viewer->setMat(m_image_pair_open_widget->getSecondMat());
+    });
 }

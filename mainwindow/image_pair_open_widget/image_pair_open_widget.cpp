@@ -25,6 +25,21 @@ const cv::Mat &ImagePairOpenWidget::getSecondMat()
     return m_second_open_widget->getMat();
 }
 
+const bool ImagePairOpenWidget::getFirstStatus()
+{
+    return m_first_open_widget->getStatus();
+}
+
+const bool ImagePairOpenWidget::getSecondStatus()
+{
+    return m_second_open_widget->getStatus();
+}
+
+const bool ImagePairOpenWidget::getStatus()
+{
+    return m_status;
+}
+
 void ImagePairOpenWidget::setupUi()
 {
     m_first_open_widget = new ImageOpenWidget(tr("First image:"));
@@ -38,8 +53,25 @@ void ImagePairOpenWidget::setupUi()
 
 void ImagePairOpenWidget::initializationOfConnection()
 {
-    connect(m_first_open_widget, &ImageOpenWidget::opened, this, &ImagePairOpenWidget::firstOpened);
-    connect(m_first_open_widget, &ImageOpenWidget::failed, this, &ImagePairOpenWidget::firstFailed);
-    connect(m_second_open_widget, &ImageOpenWidget::opened, this, &ImagePairOpenWidget::secondOpened);
-    connect(m_second_open_widget, &ImageOpenWidget::failed, this, &ImagePairOpenWidget::secondFailed);
+    connect(m_first_open_widget, &ImageOpenWidget::opened, this, [&](){
+        emit firstOpened();
+        updateStatus();
+    });
+    connect(m_first_open_widget, &ImageOpenWidget::failed, this, [&](){
+        emit firstFailed();
+        updateStatus();
+    });
+    connect(m_second_open_widget, &ImageOpenWidget::opened, this, [&](){
+        emit secondOpened();
+        updateStatus();
+    });
+    connect(m_second_open_widget, &ImageOpenWidget::failed, this, [&](){
+        emit secondFailed();
+        updateStatus();
+    });
+}
+
+void ImagePairOpenWidget::updateStatus()
+{
+    (m_first_open_widget->getStatus() && m_second_open_widget->getStatus()) ? m_status = true : m_status = false;
 }

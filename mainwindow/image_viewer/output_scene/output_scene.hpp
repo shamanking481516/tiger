@@ -12,6 +12,7 @@ public:
     virtual ~OutputScene();
 
     void setMat(const cv::Mat &t_mat);
+    void clearScene();
 
 private:
     QGraphicsPixmapItem *m_pixmap_item;

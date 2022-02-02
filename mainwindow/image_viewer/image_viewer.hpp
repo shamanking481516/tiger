@@ -15,10 +15,13 @@ public:
     virtual ~ImageViewer();
 
     void setMat(const cv::Mat &t_mat);
+    void clearViewer();
 
 private:
     OutputScene *m_scene;
     OutputView *m_output_view;
+
+    void setupUi();
 };
 
 #endif // IMAGE_VIEWER_HPP
