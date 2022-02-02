@@ -1,6 +1,7 @@
 #include "mainwindow.hpp"
 #include "image_pair_open_widget/image_pair_open_widget.hpp"
 #include "image_viewer/image_viewer.hpp"
+
 #include <QDockWidget>
 
 MainWindow::MainWindow(QWidget *t_parent) :
@@ -29,10 +30,10 @@ void MainWindow::setupUi()
 
 void MainWindow::initializationOfConnection()
 {
-    connect(m_image_pair_open_widget, &ImagePairOpenWidget::firstOpened, this, [&](){
+    connect(m_image_pair_open_widget, &ImagePairOpenWidget::firstShow, this, [&](){
         m_image_viewer->setMat(m_image_pair_open_widget->getFirstMat());
     });
-    connect(m_image_pair_open_widget, &ImagePairOpenWidget::secondOpened, this, [&](){
-            m_image_viewer->setMat(m_image_pair_open_widget->getSecondMat());
+    connect(m_image_pair_open_widget, &ImagePairOpenWidget::secondShow, this, [&](){
+        m_image_viewer->setMat(m_image_pair_open_widget->getSecondMat());
     });
 }

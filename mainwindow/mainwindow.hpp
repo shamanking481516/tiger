@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QComboBox>
 
 class ImagePairOpenWidget;
 class ImageViewer;

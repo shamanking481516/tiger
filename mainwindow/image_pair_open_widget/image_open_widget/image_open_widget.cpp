@@ -8,6 +8,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QLabel>
+#include <QGroupBox>
 
 #include "image_open_object/image_open_object.hpp"
 
@@ -37,18 +38,25 @@ const bool ImageOpenWidget::getStatus()
 
 void ImageOpenWidget::setupUi()
 {
+    auto *group_box{new QGroupBox};
+    group_box->setTitle(m_label_text);
     auto *vbox_layout{new QVBoxLayout};
     vbox_layout->setContentsMargins(0, 0, 0, 0);
-    auto *label{new QLabel(m_label_text)};
-    vbox_layout->addWidget(label);
     auto *hbox_layout{new QHBoxLayout};
     hbox_layout->setContentsMargins(0, 0, 0, 0);
     m_filename_lineedit = new QLineEdit;
     m_browse_button = new QPushButton(tr("Browse"));
     hbox_layout->addWidget(m_filename_lineedit);
     hbox_layout->addWidget(m_browse_button);
+    m_show_button = new QPushButton(tr("Show Image"));
+    m_show_button->setEnabled(false);
     vbox_layout->addLayout(hbox_layout);
-    setLayout(vbox_layout);
+    vbox_layout->addWidget(m_show_button);
+    group_box->setLayout(vbox_layout);
+    auto *layout{new QVBoxLayout};
+    layout->addWidget(group_box);
+    layout->setContentsMargins(0, 0, 0, 0);
+    setLayout(layout);
 }
 
 void ImageOpenWidget::initializationOfConnection()
@@ -62,12 +70,15 @@ void ImageOpenWidget::initializationOfConnection()
     });
     connect(m_image_open_object, &ImageOpenObject::opened, this, [&](){
         m_filename_lineedit->setStyleSheet("background: green");
+        m_show_button->setEnabled(true);
         emit opened();
     });
     connect(m_image_open_object, &ImageOpenObject::failed, this, [&](){
         m_filename_lineedit->setStyleSheet("background: red");
+        m_show_button->setEnabled(false);
         emit failed();
     });
+    connect(m_show_button, &QPushButton::clicked, this, &ImageOpenWidget::showImage);
 }
 
 const QString ImageOpenWidget::selectFileToOpen()

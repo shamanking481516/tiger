@@ -69,8 +69,9 @@ void ImagePairOpenWidget::initializationOfConnection()
         emit secondFailed();
         updateStatus();
     });
+    connect(m_first_open_widget, &ImageOpenWidget::showImage, this, &ImagePairOpenWidget::firstShow);
+    connect(m_second_open_widget, &ImageOpenWidget::showImage, this, &ImagePairOpenWidget::secondShow);
 }
-
 void ImagePairOpenWidget::updateStatus()
 {
     (m_first_open_widget->getStatus() && m_second_open_widget->getStatus()) ? m_status = true : m_status = false;

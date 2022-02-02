@@ -36,6 +36,8 @@ signals:
     void firstFailed();
     void secondOpened();
     void secondFailed();
+    void firstShow();
+    void secondShow();
 };
 
 #endif // IMAGE_PAIR_OPEN_WIDGET_HPP

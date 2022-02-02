@@ -21,15 +21,18 @@ public:
 private:
     QString m_label_text;
     QPushButton *m_browse_button;
+    QPushButton *m_show_button;
     QLineEdit *m_filename_lineedit;
     ImageOpenObject *m_image_open_object;
 
     void setupUi();
     void initializationOfConnection();
     const QString selectFileToOpen();
+
 signals:
     void opened();
     void failed();
+    void showImage();
 };
 
 #endif // IMAGE_OPEN_WIDGET_HPP
