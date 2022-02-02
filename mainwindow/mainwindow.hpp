@@ -2,7 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include <QComboBox>
+#include "depth_map_widget/depth_map_widget.hpp"
 
 class ImagePairOpenWidget;
 class ImageViewer;
@@ -17,6 +17,7 @@ public:
 private:
     ImagePairOpenWidget *m_image_pair_open_widget;
     ImageViewer *m_image_viewer;
+    DepthMapWidget *m_depth_map_widget;
 
     void setupUi();
     void initializationOfConnection();
