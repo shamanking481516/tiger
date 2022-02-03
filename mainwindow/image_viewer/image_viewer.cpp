@@ -9,6 +9,7 @@ ImageViewer::ImageViewer(QWidget *t_parent) :
     m_output_view{new OutputView}
 {
     setupUi();
+    initializationOfConnection();
 }
 
 ImageViewer::~ImageViewer()
@@ -19,6 +20,12 @@ ImageViewer::~ImageViewer()
 void ImageViewer::setMat(const cv::Mat &t_mat)
 {
     m_scene->setMat(t_mat);
+    m_output_view->fitIntoView();
+}
+
+void ImageViewer::setPixmap(const QPixmap &t_pixmap)
+{
+    m_scene->setPixmap(t_pixmap);
     m_output_view->fitIntoView();
 }
 
@@ -34,4 +41,9 @@ void ImageViewer::setupUi()
     vbox_layout->setContentsMargins(0, 0, 0, 0);
     vbox_layout->addWidget(m_output_view);
     setLayout(vbox_layout);
+}
+
+void ImageViewer::initializationOfConnection()
+{
+    connect(m_output_view, &OutputView::sendSelectedArea, this, &ImageViewer::sendSelectedArea);
 }

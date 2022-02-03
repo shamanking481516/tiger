@@ -15,6 +15,7 @@ public:
     virtual ~ImageViewer();
 
     void setMat(const cv::Mat &t_mat);
+    void setPixmap(const QPixmap &t_pixmap);
     void clearViewer();
 
 private:
@@ -22,6 +23,10 @@ private:
     OutputView *m_output_view;
 
     void setupUi();
+    void initializationOfConnection();
+
+signals:
+    void sendSelectedArea(QPixmap t_selected_area);
 };
 
 #endif // IMAGE_VIEWER_HPP

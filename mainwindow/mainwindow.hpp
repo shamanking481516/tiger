@@ -18,6 +18,7 @@ private:
     ImagePairOpenWidget *m_image_pair_open_widget;
     ImageViewer *m_image_viewer;
     DepthMapWidget *m_depth_map_widget;
+    ImageViewer *m_crop_image_viewer;
 
     void setupUi();
     void initializationOfConnection();

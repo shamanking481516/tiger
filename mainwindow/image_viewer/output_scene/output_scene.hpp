@@ -12,6 +12,7 @@ public:
     virtual ~OutputScene();
 
     void setMat(const cv::Mat &t_mat);
+    void setPixmap(const QPixmap &t_pixmap);
     void clearScene();
 
 private:

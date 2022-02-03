@@ -24,8 +24,6 @@ void DepthMapProcessor::computeDepthMap(const cv::Mat &t_first_mat, const cv::Ma
         cv::normalize(m_depth_map, m_depth_map, 0, 255, cv::NORM_MINMAX);
         m_depth_map.convertTo(m_depth_map, CV_8UC3);
     }
-//    cv::divide(t_first_mat, t_second_mat, m_depth_map);
-//    m_depth_map = cv::Mat(512, 512, CV_8UC3, cv::Scalar(120, 120, 120));
     m_status = !m_depth_map.empty();
     emit statusChanged();
 }

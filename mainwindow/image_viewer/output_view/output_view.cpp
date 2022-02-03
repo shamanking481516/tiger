@@ -66,7 +66,8 @@ void OutputView::mouseMoveEvent(QMouseEvent *t_event)
 
 void OutputView::mouseReleaseEvent(QMouseEvent *t_event)
 {
-    if (!items().empty())
+    bool is_not_same_pos = m_origin != t_event->pos();
+    if (!items().empty() && is_not_same_pos)
     {
         QGraphicsPixmapItem *pixmap_item = qgraphicsitem_cast<QGraphicsPixmapItem*>(items().at(0));
         QPixmap selected_area = pixmap_item->pixmap().copy(getRectForScene(m_rubber_band->geometry()));
