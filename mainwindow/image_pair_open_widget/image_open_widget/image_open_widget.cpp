@@ -84,7 +84,7 @@ void ImageOpenWidget::initializationOfConnection()
 const QString ImageOpenWidget::selectFileToOpen()
 {
     const QString caption {tr("Open Image")};
-    const QString filter {tr("Images (*.jpeg)")};
+    const QString filter {tr("Images (*.jpeg *.jpg)")};
     const QString filename = QFileDialog::getOpenFileName(this, caption, QDir::homePath(), filter);
     return filename;
 }

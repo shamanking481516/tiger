@@ -31,7 +31,7 @@ private slots:
     void updateStatus();
 
 signals:
-    void prepared();
+    void statusChanged();
     void firstOpened();
     void firstFailed();
     void secondOpened();

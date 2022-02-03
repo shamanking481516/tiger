@@ -13,13 +13,14 @@ public:
 
     void computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat);
     const cv::Mat &getDepthMat();
+    bool getStatus();
 
 private:
     cv::Mat m_depth_map;
+    bool m_status{false};
 
 signals:
-    void computed();
-    void failed();
+    void statusChanged();
 };
 
 #endif // DEPTH_MAP_PROCESSOR_HPP

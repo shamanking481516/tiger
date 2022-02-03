@@ -42,4 +42,13 @@ void MainWindow::initializationOfConnection()
     connect(m_image_pair_open_widget, &ImagePairOpenWidget::secondShow, this, [&](){
         m_image_viewer->setMat(m_image_pair_open_widget->getSecondMat());
     });
+    connect(m_image_pair_open_widget, &ImagePairOpenWidget::statusChanged, this, [&](){
+        m_depth_map_widget->setReadinessStatus(m_image_pair_open_widget->getStatus());
+    });
+    connect(m_depth_map_widget, &DepthMapWidget::computeButtonClicked, this, [&](){
+        m_depth_map_widget->computeDepthMap(m_image_pair_open_widget->getFirstMat(), m_image_pair_open_widget->getSecondMat());
+    });
+    connect(m_depth_map_widget, &DepthMapWidget::showButtonClicked, this, [&](){
+        m_image_viewer->setMat(m_depth_map_widget->getDepthMat());
+    });
 }

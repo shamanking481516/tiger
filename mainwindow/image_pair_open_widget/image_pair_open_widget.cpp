@@ -75,4 +75,5 @@ void ImagePairOpenWidget::initializationOfConnection()
 void ImagePairOpenWidget::updateStatus()
 {
     (m_first_open_widget->getStatus() && m_second_open_widget->getStatus()) ? m_status = true : m_status = false;
+    emit statusChanged();
 }

@@ -1,3 +1,5 @@
+add_subdirectory(depth_map_processor)
+
 set(TIGER_SOURCES
   ${TIGER_SOURCES}
   mainwindow/depth_map_widget/depth_map_widget.cpp
