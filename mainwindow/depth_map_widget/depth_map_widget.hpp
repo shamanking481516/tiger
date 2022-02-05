@@ -2,14 +2,13 @@
 #define DEPTH_MAP_WIDGET_HPP
 
 #include <QWidget>
-#include <QLabel>
-#include <QLineEdit>
 
 #include "depth_map_processor/depth_map_processor.hpp"
 #include <opencv2/opencv.hpp>
 
 class QDoubleSpinBox;
 class QPushButton;
+class QLineEdit;
 
 class DepthMapWidget : public QWidget
 {

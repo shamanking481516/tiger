@@ -5,6 +5,8 @@
 #include <QDoubleSpinBox>
 #include <QFormLayout>
 #include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
 
 DepthMapWidget::DepthMapWidget(QWidget *t_parent) :
     QWidget(t_parent),
