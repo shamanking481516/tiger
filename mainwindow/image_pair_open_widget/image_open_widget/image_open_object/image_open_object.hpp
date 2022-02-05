@@ -12,8 +12,8 @@ public:
     virtual ~ImageOpenObject();
 
     void openMat(const QString &t_filename);
-    const cv::Mat &getMat();
-    const bool getStatus();
+    const cv::Mat &getMat() const;
+    const bool getStatus() const;
 
 private:
     cv::Mat m_mat;

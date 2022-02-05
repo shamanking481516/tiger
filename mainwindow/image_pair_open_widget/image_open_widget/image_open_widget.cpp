@@ -26,12 +26,12 @@ ImageOpenWidget::~ImageOpenWidget()
 
 }
 
-const cv::Mat &ImageOpenWidget::getMat()
+const cv::Mat &ImageOpenWidget::getMat() const
 {
     return m_image_open_object->getMat();
 }
 
-const bool ImageOpenWidget::getStatus()
+const bool ImageOpenWidget::getStatus() const
 {
     return m_image_open_object->getStatus();
 }

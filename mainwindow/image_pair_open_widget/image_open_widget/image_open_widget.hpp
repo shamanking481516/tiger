@@ -15,8 +15,8 @@ public:
     explicit ImageOpenWidget(const QString &t_label_text, QWidget *t_parent = nullptr);
     virtual ~ImageOpenWidget();
 
-    const cv::Mat &getMat();
-    const bool getStatus();
+    const cv::Mat &getMat() const;
+    const bool getStatus() const;
 
 private:
     QString m_label_text;

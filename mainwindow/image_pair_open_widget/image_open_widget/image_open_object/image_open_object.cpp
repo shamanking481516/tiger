@@ -27,12 +27,12 @@ void ImageOpenObject::openMat(const QString &t_filename)
     }
 }
 
-const cv::Mat &ImageOpenObject::getMat()
+const cv::Mat &ImageOpenObject::getMat() const
 {
     return m_mat;
 }
 
-const bool ImageOpenObject::getStatus()
+const bool ImageOpenObject::getStatus() const
 {
     return m_status;
 }

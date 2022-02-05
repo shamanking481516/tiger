@@ -12,8 +12,8 @@ public:
     virtual ~DepthMapProcessor();
 
     void computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat);
-    const cv::Mat &getDepthMat();
-    bool getStatus();
+    const cv::Mat &getDepthMat() const;
+    const bool getStatus() const;
 
 private:
     cv::Mat m_depth_map;

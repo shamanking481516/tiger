@@ -9,6 +9,9 @@ class ImageParametersWidget : public QWidget
 public:
     explicit ImageParametersWidget(QWidget *t_parent = nullptr);
     virtual ~ImageParametersWidget();
+
+private:
+    void setupUi();
 };
 
 #endif // IMAGE_PARAMETERS_WIDGET_HPP

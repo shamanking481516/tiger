@@ -10,3 +10,8 @@ ImageParametersWidget::~ImageParametersWidget()
 {
 
 }
+
+void ImageParametersWidget::setupUi()
+{
+
+}

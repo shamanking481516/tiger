@@ -19,7 +19,7 @@ public:
 
     void setReadinessStatus(bool t_status);
     void computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat);
-    const cv::Mat &getDepthMat();
+    const cv::Mat &getDepthMat() const;
 
 private:
     bool m_readiness_status{false};

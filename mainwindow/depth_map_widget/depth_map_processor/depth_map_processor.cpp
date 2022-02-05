@@ -28,12 +28,12 @@ void DepthMapProcessor::computeDepthMap(const cv::Mat &t_first_mat, const cv::Ma
     emit statusChanged();
 }
 
-const cv::Mat &DepthMapProcessor::getDepthMat()
+const cv::Mat &DepthMapProcessor::getDepthMat() const
 {
     return m_depth_map;
 }
 
-bool DepthMapProcessor::getStatus()
+const bool DepthMapProcessor::getStatus() const
 {
     return m_status;
 }

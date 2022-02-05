@@ -32,7 +32,7 @@ void DepthMapWidget::computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &
     m_depth_map_processor->computeDepthMap(t_first_mat, t_second_mat);
 }
 
-const cv::Mat &DepthMapWidget::getDepthMat()
+const cv::Mat &DepthMapWidget::getDepthMat() const
 {
     return m_depth_map_processor->getDepthMat();
 }
