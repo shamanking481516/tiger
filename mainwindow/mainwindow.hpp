@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QDockWidget>
 
 class ImagePairOpenWidget;
 class ImageViewer;
@@ -24,6 +25,11 @@ private:
 
     void setupUi();
     void initializationOfConnection();
+    void addWidgetAsDockWidget(QWidget *t_widget,
+                               const QString &t_title,
+                               const QDockWidget::DockWidgetFeature t_feature,
+                               const Qt::DockWidgetAreas t_dock_widget_areas,
+                               const Qt::DockWidgetArea t_dock_selected_area);
 };
 
 #endif // MAINWINDOW_HPP
