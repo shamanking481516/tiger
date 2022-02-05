@@ -28,7 +28,6 @@ void OutputView::fitIntoView()
 
 void OutputView::wheelEvent(QWheelEvent *t_event)
 {
-    Q_UNUSED(t_event);
     const double angle_delta_y = t_event->angleDelta().y();
     const double zoom_factor = qPow(1.0015, angle_delta_y);
     scale(zoom_factor, zoom_factor);
