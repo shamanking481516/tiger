@@ -1,6 +1,8 @@
 #include "mainwindow.hpp"
 #include "image_pair_open_widget/image_pair_open_widget.hpp"
 #include "image_viewer/image_viewer.hpp"
+#include "depth_map_widget/depth_map_widget.hpp"
+#include "image_parameters_widget/image_parameters_widget.hpp"
 
 #include <QDockWidget>
 
@@ -9,7 +11,8 @@ MainWindow::MainWindow(QWidget *t_parent) :
     m_image_pair_open_widget{new ImagePairOpenWidget},
     m_image_viewer{new ImageViewer},
     m_depth_map_widget{new DepthMapWidget},
-    m_crop_image_viewer{new ImageViewer}
+    m_crop_image_viewer{new ImageViewer},
+    m_image_parameters_widget{new ImageParametersWidget}
 {
     setupUi();
     initializationOfConnection();
@@ -40,6 +43,12 @@ void MainWindow::setupUi()
     crop_image_dock_widget->setWidget(m_crop_image_viewer);
     crop_image_dock_widget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea, crop_image_dock_widget);
+
+    auto image_paremeters_dock_widget = new QDockWidget(tr("Crop Image Parameters"));
+    image_paremeters_dock_widget->setFeatures(QDockWidget::DockWidgetMovable);
+    image_paremeters_dock_widget->setWidget(m_image_parameters_widget);
+    image_paremeters_dock_widget->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea, image_paremeters_dock_widget);
 }
 
 void MainWindow::initializationOfConnection()

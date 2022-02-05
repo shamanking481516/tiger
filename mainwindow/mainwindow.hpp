@@ -2,10 +2,11 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include "depth_map_widget/depth_map_widget.hpp"
 
 class ImagePairOpenWidget;
 class ImageViewer;
+class DepthMapWidget;
+class ImageParametersWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -19,6 +20,7 @@ private:
     ImageViewer *m_image_viewer;
     DepthMapWidget *m_depth_map_widget;
     ImageViewer *m_crop_image_viewer;
+    ImageParametersWidget *m_image_parameters_widget;
 
     void setupUi();
     void initializationOfConnection();
