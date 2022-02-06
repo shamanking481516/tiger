@@ -30,8 +30,7 @@ private:
     const QString selectFileToOpen();
 
 signals:
-    void opened();
-    void failed();
+    void statusChanged();
     void showImage();
 };
 

@@ -20,8 +20,7 @@ private:
     bool m_status{false};
 
 signals:
-    void opened();
-    void failed();
+    void statusChanged();
 };
 
 #endif // IMAGE_OPEN_OBJECT_HPP

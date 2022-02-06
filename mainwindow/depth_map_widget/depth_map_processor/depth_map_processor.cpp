@@ -17,9 +17,9 @@ void DepthMapProcessor::computeDepthMap(const cv::Mat &t_first_mat, const cv::Ma
     if (t_first_mat.size() == t_second_mat.size())
     {
         cv::Mat first_temp;
-        t_first_mat.convertTo(first_temp, CV_64FC3);
+        t_first_mat.convertTo(first_temp, CV_64FC1);
         cv::Mat second_temp;
-        t_second_mat.convertTo(second_temp, CV_64FC3);
+        t_second_mat.convertTo(second_temp, CV_64FC1);
         cv::divide(first_temp, second_temp, m_depth_map);
         cv::normalize(m_depth_map, m_depth_map, 0, 255, cv::NORM_MINMAX);
         m_depth_map.convertTo(m_depth_map, CV_8UC3);

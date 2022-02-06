@@ -68,15 +68,10 @@ void ImageOpenWidget::initializationOfConnection()
     connect(m_filename_lineedit, &QLineEdit::textChanged, this, [&](){
         m_image_open_object->openMat(m_filename_lineedit->text());
     });
-    connect(m_image_open_object, &ImageOpenObject::opened, this, [&](){
-        m_filename_lineedit->setStyleSheet("background: green");
-        m_show_button->setEnabled(true);
-        emit opened();
-    });
-    connect(m_image_open_object, &ImageOpenObject::failed, this, [&](){
-        m_filename_lineedit->setStyleSheet("background: red");
-        m_show_button->setEnabled(false);
-        emit failed();
+    connect(m_image_open_object, &ImageOpenObject::statusChanged, this, [&](){
+        m_show_button->setEnabled(getStatus());
+        getStatus() ? m_filename_lineedit->setStyleSheet("background: green") : m_filename_lineedit->setStyleSheet("background: red");
+        emit statusChanged();
     });
     connect(m_show_button, &QPushButton::clicked, this, &ImageOpenWidget::showImage);
 }

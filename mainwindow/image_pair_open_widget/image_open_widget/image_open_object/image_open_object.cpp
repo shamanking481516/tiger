@@ -18,12 +18,12 @@ void ImageOpenObject::openMat(const QString &t_filename)
     if (!m_mat.empty())
     {
         m_status = true;
-        emit opened();
+        emit statusChanged();
     }
     else
     {
         m_status = false;
-        emit failed();
+        emit statusChanged();
     }
 }
 
