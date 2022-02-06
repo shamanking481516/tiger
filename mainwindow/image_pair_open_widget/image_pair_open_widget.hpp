@@ -32,10 +32,8 @@ private slots:
 
 signals:
     void statusChanged();
-    void firstOpened();
-    void firstFailed();
-    void secondOpened();
-    void secondFailed();
+    void firstStatusChanged();
+    void secondStatusChanged();
     void firstShow();
     void secondShow();
 };

@@ -54,11 +54,11 @@ void ImagePairOpenWidget::setupUi()
 void ImagePairOpenWidget::initializationOfConnection()
 {
     connect(m_first_open_widget, &ImageOpenWidget::statusChanged, this, [&](){
-        m_first_open_widget->getStatus() ? emit firstOpened() : emit firstFailed();
+        emit firstStatusChanged();
         updateStatus();
     });
     connect(m_second_open_widget, &ImageOpenWidget::statusChanged, this, [&](){
-        m_second_open_widget->getStatus() ? emit firstOpened() : emit firstFailed();
+        emit secondStatusChanged();
         updateStatus();
     });
     connect(m_first_open_widget, &ImageOpenWidget::showImage, this, &ImagePairOpenWidget::firstShow);
