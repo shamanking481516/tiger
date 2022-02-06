@@ -22,8 +22,6 @@ void DepthMapProcessor::computeDepthMap(const cv::Mat &t_first_mat, const cv::Ma
         cv::divide(first_temp, second_temp, m_depth_map);
         m_depth_map -= m_first_parameter;
         cv::divide(m_depth_map, m_second_parameter, m_depth_map);
-//        cv::normalize(m_depth_map, m_depth_map, 0, 255, cv::NORM_MINMAX);
-//        m_depth_map = getNormalMat(m_depth_map);
         m_depth_map.convertTo(m_depth_map, CV_8UC1);
         m_depth_map = getColorMapMat(m_depth_map);
     }
