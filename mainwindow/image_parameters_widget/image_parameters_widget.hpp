@@ -15,7 +15,7 @@ public:
     virtual ~ImageParametersWidget();
 
 public slots:
-    void setParametersFromMat(const cv::Mat &t_mat);
+    void setParametersFromPixmap(const QPixmap t_pixmap);
 
 private:
     QLineEdit *m_mean_line_edit;
@@ -25,6 +25,7 @@ private:
 
     void setupUi();
     void addRowInFormLayout(QFormLayout *t_layout, QLineEdit *t_line_edit, const QString &t_text);
+    cv::Mat getMatFromPixmap(const QPixmap &t_pixmap) const;
 };
 
 #endif // IMAGE_PARAMETERS_WIDGET_HPP

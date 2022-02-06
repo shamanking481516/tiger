@@ -5,7 +5,11 @@
 #include <QLineEdit>
 
 ImageParametersWidget::ImageParametersWidget(QWidget *t_parent) :
-    QWidget(t_parent)
+    QWidget(t_parent),
+    m_mean_line_edit{new QLineEdit},
+    m_stddev_line_edit{new QLineEdit},
+    m_min_line_edit{new QLineEdit},
+    m_max_line_edit{new QLineEdit}
 {
     setupUi();
 }
@@ -15,13 +19,21 @@ ImageParametersWidget::~ImageParametersWidget()
 
 }
 
-void ImageParametersWidget::setParametersFromMat(const cv::Mat &t_mat)
+void ImageParametersWidget::setParametersFromPixmap(const QPixmap t_pixmap)
 {
+    cv::Mat mat = getMatFromPixmap(t_pixmap);
     cv::Scalar mean;
     cv::Scalar deviation;
-    cv::meanStdDev(t_mat, mean, deviation);
+    cv::meanStdDev(mat, mean, deviation);
     m_mean_line_edit->setText(QString::number(mean[0]));
     m_stddev_line_edit->setText(QString::number(deviation[0]));
+    double min = 0;
+    cv::Point min_point;
+    double max = 0;
+    cv::Point max_point;
+    cv::minMaxLoc(mat, &min, &max, &min_point, &max_point);
+    m_min_line_edit->setText(QString::number(min));
+    m_max_line_edit->setText(QString::number(max));
 }
 
 void ImageParametersWidget::setupUi()
@@ -40,8 +52,14 @@ void ImageParametersWidget::setupUi()
 void ImageParametersWidget::addRowInFormLayout(QFormLayout *t_layout, QLineEdit *t_line_edit, const QString &t_text)
 {
     auto label = new QLabel(t_text);
-    if (!t_line_edit)
-        t_line_edit = new QLineEdit;
     t_line_edit->setReadOnly(true);
     t_layout->addRow(label, t_line_edit);
+}
+
+cv::Mat ImageParametersWidget::getMatFromPixmap(const QPixmap &t_pixmap) const
+{
+    QImage image = t_pixmap.toImage();
+    image.convertTo(QImage::Format_Grayscale8);
+    cv::Mat result = cv::Mat(image.height(), image.width(), CV_8UC1, (void *)image.constBits(), image.bytesPerLine()).clone();
+    return result;
 }

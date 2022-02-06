@@ -4,6 +4,8 @@
 #include "depth_map_widget/depth_map_widget.hpp"
 #include "image_parameters_widget/image_parameters_widget.hpp"
 
+#include <QDebug>
+
 MainWindow::MainWindow(QWidget *t_parent) :
     QMainWindow{t_parent},
     m_image_pair_open_widget{new ImagePairOpenWidget},
@@ -51,6 +53,9 @@ void MainWindow::initializationOfConnection()
     });
     connect(m_image_viewer, &ImageViewer::sendSelectedArea, this, [&](const QPixmap t_pixmap){
         m_crop_image_viewer->setPixmap(t_pixmap);
+    });
+    connect(m_image_viewer, &ImageViewer::sendSelectedArea, this, [&](const QPixmap t_pixmap){
+        m_image_parameters_widget->setParametersFromPixmap(t_pixmap);
     });
 }
 

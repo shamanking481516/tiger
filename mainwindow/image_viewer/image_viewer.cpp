@@ -46,4 +46,5 @@ void ImageViewer::setupUi()
 void ImageViewer::initializationOfConnection()
 {
     connect(m_output_view, &OutputView::sendSelectedArea, this, &ImageViewer::sendSelectedArea);
+    connect(m_output_view, &OutputView::sendSelectedRect, this, &ImageViewer::sendSelectedRect);
 }
