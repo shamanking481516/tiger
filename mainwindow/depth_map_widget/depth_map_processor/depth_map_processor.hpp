@@ -11,7 +11,7 @@ public:
     explicit DepthMapProcessor(QObject *t_parent = nullptr);
     virtual ~DepthMapProcessor();
 
-    void computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat);
+    void computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat, const bool t_is_normalize);
     const cv::Mat &getDepthMat() const;
     const bool getStatus() const;
 

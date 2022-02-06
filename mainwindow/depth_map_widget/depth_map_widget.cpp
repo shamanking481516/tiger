@@ -30,7 +30,7 @@ void DepthMapWidget::setReadinessStatus(const bool t_status)
 
 void DepthMapWidget::computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat)
 {
-    m_depth_map_processor->computeDepthMap(t_first_mat, t_second_mat);
+    m_depth_map_processor->computeDepthMap(t_first_mat, t_second_mat, m_normalize_check_box->isChecked());
 }
 
 const cv::Mat &DepthMapWidget::getDepthMat() const
@@ -54,8 +54,8 @@ void DepthMapWidget::setupUi()
     m_second_spin_box = new QDoubleSpinBox;
     form_layout->addRow(second_label, m_second_spin_box);
     layout->addLayout(form_layout);
-    auto *normalize_check_box = new QCheckBox(tr("Normalize Depth Map Image"));
-    layout->addWidget(normalize_check_box);
+    m_normalize_check_box = new QCheckBox(tr("Normalize Depth Map Image"));
+    layout->addWidget(m_normalize_check_box);
     m_compute_button = new QPushButton(tr("Compute"));
     m_compute_button->setEnabled(false);
     m_show_button = new QPushButton(tr("Show Depth Map"));

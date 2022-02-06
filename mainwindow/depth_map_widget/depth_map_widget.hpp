@@ -9,6 +9,7 @@
 class QDoubleSpinBox;
 class QPushButton;
 class QLineEdit;
+class QCheckBox;
 
 class DepthMapWidget : public QWidget
 {
@@ -29,6 +30,7 @@ private:
     QDoubleSpinBox *m_second_spin_box;
     QPushButton *m_compute_button;
     QPushButton *m_show_button;
+    QCheckBox *m_normalize_check_box;
 
     void setupUi();
     void initializationOfConnection();

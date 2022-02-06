@@ -12,18 +12,21 @@ DepthMapProcessor::~DepthMapProcessor()
 
 }
 
-void DepthMapProcessor::computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat)
+void DepthMapProcessor::computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &t_second_mat, const bool t_is_normalize)
 {
     m_depth_map = 0;
     if (t_first_mat.size() == t_second_mat.size())
     {
         cv::Mat first_temp = getGrayDoubleMat(t_first_mat);
         cv::Mat second_temp = getGrayDoubleMat(t_second_mat);
-        cv::divide(first_temp, second_temp, m_depth_map);
-        m_depth_map -= m_first_parameter;
-        cv::divide(m_depth_map, m_second_parameter, m_depth_map);
-        m_depth_map.convertTo(m_depth_map, CV_8UC1);
-        m_depth_map = getColorMapMat(m_depth_map);
+        cv::divide(first_temp, second_temp, first_temp);
+        cv::subtract(first_temp, m_first_parameter, first_temp);
+        cv::divide(first_temp, m_second_parameter, first_temp);
+        if (t_is_normalize)
+        {
+            cv::normalize(first_temp, first_temp, 0, 255, cv::NORM_MINMAX);
+        }
+        m_depth_map = getNormalMat(first_temp);
     }
     m_status = !m_depth_map.empty();
     emit statusChanged();

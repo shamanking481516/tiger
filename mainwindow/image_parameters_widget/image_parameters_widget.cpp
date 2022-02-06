@@ -1,4 +1,5 @@
 #include "image_parameters_widget.hpp"
+
 #include <QFormLayout>
 #include <QVBoxLayout>
 #include <QLabel>
