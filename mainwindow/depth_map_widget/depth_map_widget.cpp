@@ -22,7 +22,7 @@ DepthMapWidget::~DepthMapWidget()
 
 }
 
-void DepthMapWidget::setReadinessStatus(bool t_status)
+void DepthMapWidget::setReadinessStatus(const bool t_status)
 {
     m_readiness_status = t_status;
     m_compute_button->setEnabled(m_readiness_status);
@@ -36,6 +36,11 @@ void DepthMapWidget::computeDepthMap(const cv::Mat &t_first_mat, const cv::Mat &
 const cv::Mat &DepthMapWidget::getDepthMat() const
 {
     return m_depth_map_processor->getDepthMat();
+}
+
+const bool DepthMapWidget::getStatus() const
+{
+    return m_depth_map_processor->getStatus();
 }
 
 void DepthMapWidget::setupUi()
@@ -65,8 +70,7 @@ void DepthMapWidget::initializationOfConnection()
     connect(m_compute_button, &QPushButton::clicked, this, &DepthMapWidget::computeButtonClicked);
     connect(m_show_button, &QPushButton::clicked, this, &DepthMapWidget::showButtonClicked);
     connect(m_depth_map_processor, &DepthMapProcessor::statusChanged, this, [&](){
-        m_status = m_depth_map_processor->getStatus();
-        m_show_button->setEnabled(m_status);
+        m_show_button->setEnabled(m_depth_map_processor->getStatus());
     });
     connect(m_first_spin_box, &QDoubleSpinBox::valueChanged, m_depth_map_processor, &DepthMapProcessor::setFirstParameter);
     connect(m_second_spin_box, &QDoubleSpinBox::valueChanged, m_depth_map_processor, &DepthMapProcessor::setSecondParameter);
