@@ -32,6 +32,7 @@ private:
 
 signals:
     void sendSelectedArea(QPixmap t_selected_area);
+    void sendSelectedRect(QRect t_rect);
 };
 
 #endif // OUTPUT_VIEW_HPP

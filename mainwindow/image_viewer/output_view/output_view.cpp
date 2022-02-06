@@ -71,6 +71,7 @@ void OutputView::mouseReleaseEvent(QMouseEvent *t_event)
         QGraphicsPixmapItem *pixmap_item = qgraphicsitem_cast<QGraphicsPixmapItem*>(items().at(0));
         QPixmap selected_area = pixmap_item->pixmap().copy(getRectForScene(m_rubber_band->geometry()));
         emit sendSelectedArea(selected_area);
+        emit sendSelectedRect(getRectForScene(m_rubber_band->geometry()));
     }
     m_rubber_band->hide();
 }

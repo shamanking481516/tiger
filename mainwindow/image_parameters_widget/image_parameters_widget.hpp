@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp>
 
 class QLineEdit;
+class QFormLayout;
 
 class ImageParametersWidget : public QWidget
 {
@@ -14,15 +15,16 @@ public:
     virtual ~ImageParametersWidget();
 
 public slots:
-    void setMat(const cv::Mat &t_mat);
+    void setParametersFromMat(const cv::Mat &t_mat);
 
 private:
     QLineEdit *m_mean_line_edit;
-    QLineEdit *m_median_line_edit;
+    QLineEdit *m_stddev_line_edit;
     QLineEdit *m_min_line_edit;
     QLineEdit *m_max_line_edit;
 
     void setupUi();
+    void addRowInFormLayout(QFormLayout *t_layout, QLineEdit *t_line_edit, const QString &t_text);
 };
 
 #endif // IMAGE_PARAMETERS_WIDGET_HPP

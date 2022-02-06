@@ -15,32 +15,33 @@ ImageParametersWidget::~ImageParametersWidget()
 
 }
 
-void ImageParametersWidget::setMat(const cv::Mat &t_mat)
+void ImageParametersWidget::setParametersFromMat(const cv::Mat &t_mat)
 {
-
+    cv::Scalar mean;
+    cv::Scalar deviation;
+    cv::meanStdDev(t_mat, mean, deviation);
+    m_mean_line_edit->setText(QString::number(mean[0]));
+    m_stddev_line_edit->setText(QString::number(deviation[0]));
 }
 
 void ImageParametersWidget::setupUi()
 {
     auto *layout{new QVBoxLayout};
     auto *form_layout{new QFormLayout};
-    auto *mean_label = new QLabel(tr("Mean:"));
-    m_mean_line_edit = new QLineEdit;
-    m_mean_line_edit->setReadOnly(true);
-    form_layout->addRow(mean_label, m_mean_line_edit);
-    auto *median_label = new QLabel(tr("Median:"));
-    m_median_line_edit = new QLineEdit;
-    m_median_line_edit->setReadOnly(true);
-    form_layout->addRow(median_label, m_median_line_edit);
-    auto *min_label = new QLabel(tr("Minimum:"));
-    m_min_line_edit = new QLineEdit;
-    m_min_line_edit->setReadOnly(true);
-    form_layout->addRow(min_label, m_min_line_edit);
-    auto *max_label = new QLabel(tr("Maximum:"));
-    m_max_line_edit = new QLineEdit;
-    m_max_line_edit->setReadOnly(true);
-    form_layout->addRow(max_label, m_max_line_edit);
+    addRowInFormLayout(form_layout, m_mean_line_edit, tr("Mean:"));
+    addRowInFormLayout(form_layout, m_stddev_line_edit, tr("Deviation:"));
+    addRowInFormLayout(form_layout, m_min_line_edit, tr("Minimum:"));
+    addRowInFormLayout(form_layout, m_max_line_edit, tr("Maximum"));
     layout->addLayout(form_layout);
     layout->addStretch(10);
     setLayout(layout);
+}
+
+void ImageParametersWidget::addRowInFormLayout(QFormLayout *t_layout, QLineEdit *t_line_edit, const QString &t_text)
+{
+    auto label = new QLabel(t_text);
+    if (!t_line_edit)
+        t_line_edit = new QLineEdit;
+    t_line_edit->setReadOnly(true);
+    t_layout->addRow(label, t_line_edit);
 }
