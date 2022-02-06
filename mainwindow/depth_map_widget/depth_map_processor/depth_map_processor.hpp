@@ -15,9 +15,19 @@ public:
     const cv::Mat &getDepthMat() const;
     const bool getStatus() const;
 
+public slots:
+    void setFirstParameter(double t_first_parameter);
+    void setSecondParameter(double t_second_parameter);
+
 private:
     cv::Mat m_depth_map;
+    double m_first_parameter{0};
+    double m_second_parameter{0};
     bool m_status{false};
+
+    cv::Mat getGrayDoubleMat(const cv::Mat &t_mat);
+    cv::Mat getNormalMat(const cv::Mat &t_mat);
+    cv::Mat getColorMapMat(const cv::Mat &t_mat);
 
 signals:
     void statusChanged();

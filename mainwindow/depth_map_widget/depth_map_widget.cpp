@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
+#include <QCheckBox>
 
 DepthMapWidget::DepthMapWidget(QWidget *t_parent) :
     QWidget(t_parent),
@@ -48,6 +49,8 @@ void DepthMapWidget::setupUi()
     m_second_spin_box = new QDoubleSpinBox;
     form_layout->addRow(second_label, m_second_spin_box);
     layout->addLayout(form_layout);
+    auto *normalize_check_box = new QCheckBox(tr("Normalize Depth Map Image"));
+    layout->addWidget(normalize_check_box);
     m_compute_button = new QPushButton(tr("Compute"));
     m_compute_button->setEnabled(false);
     m_show_button = new QPushButton(tr("Show Depth Map"));
@@ -65,4 +68,6 @@ void DepthMapWidget::initializationOfConnection()
         m_status = m_depth_map_processor->getStatus();
         m_show_button->setEnabled(m_status);
     });
+    connect(m_first_spin_box, &QDoubleSpinBox::valueChanged, m_depth_map_processor, &DepthMapProcessor::setFirstParameter);
+    connect(m_second_spin_box, &QDoubleSpinBox::valueChanged, m_depth_map_processor, &DepthMapProcessor::setSecondParameter);
 }
