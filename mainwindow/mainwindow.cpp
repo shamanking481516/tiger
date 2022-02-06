@@ -25,6 +25,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupUi()
 {
+    resize(800, 400);
+    setWindowTitle(tr("AP TMS"));
     setCentralWidget(m_image_viewer);
     const auto dock_feature = QDockWidget::DockWidgetMovable;
     const auto dock_areas = Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea;
